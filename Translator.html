@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>Language Switcher</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: #0D0D0D; /* sfondo scuro */
+        font-family: Arial, sans-serif;
+    }
+
+    /* Contenitore principale */
+    .lang-box {
+        background: #111;
+        padding: 10px 18px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid rgba(255,255,255,0.08);
+        box-shadow: 0 4px 18px rgba(0,0,0,0.45);
+        width: fit-content;
+    }
+
+    /* Icona mondo */
+    .lang-icon {
+        width: 18px;
+        opacity: 0.85;
+    }
+
+    /* Bandierine */
+    .flag-icon {
+        width: 20px;
+        height: 14px;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        border: 1px solid rgba(255,255,255,0.2);
+    }
+    .flag-icon:hover {
+        transform: scale(1.12);
+        box-shadow: 0 0 8px rgba(255,255,255,0.3);
+    }
+
+    /* Nascondi lo stile brutto di Google Translate */
+    #google_translate_element {
+        display: none;
+    }
+
+</style>
+</head>
+
+<body>
+
+<div class="lang-box">
+    <img src="https://cdn-icons-png.flaticon.com/512/44/44386.png" class="lang-icon">
+
+    <!-- IT -->
+    <img src="https://flagcdn.com/w20/it.png"
+         class="flag-icon"
+         onclick="changeLang('it')">
+
+    <!-- EN -->
+    <img src="https://flagcdn.com/w20/gb.png"
+         class="flag-icon"
+         onclick="changeLang('en')">
+
+    <!-- ES -->
+    <img src="https://flagcdn.com/w20/es.png"
+         class="flag-icon"
+         onclick="changeLang('es')">
+
+    <!-- FR -->
+    <img src="https://flagcdn.com/w20/fr.png"
+         class="flag-icon"
+         onclick="changeLang('fr')">
+
+</div>
+
+<div id="google_translate_element"></div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+        {
+            pageLanguage: 'it',
+            includedLanguages: 'it,en,es,fr',
+            autoDisplay: false
+        },
+        'google_translate_element'
+    );
+}
+
+function changeLang(lang) {
+    var select = document.querySelector("select.goog-te-combo");
+    if (select) {
+        select.value = lang;
+        select.dispatchEvent(new Event('change'));
+    }
+}
+</script>
+
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>
